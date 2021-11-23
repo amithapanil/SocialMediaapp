@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Social Network Application
 
 This is a sample social networking application
 
