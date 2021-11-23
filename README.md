@@ -2,7 +2,7 @@
 
 This is a sample social networking application
 
-## Available Scripts
+## Available Script
 
 In the project directory, you can run:
 
