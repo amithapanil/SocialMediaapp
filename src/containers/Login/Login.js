@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,22 +7,36 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
+import { useAppContext } from "../../core/Context";
 
 export default function Login() {
+  const { setLogin, isLogin } = useAppContext();
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-    navigate("/");
+    // ajax
+    if (username === "test@gmail.com" && password === "123") {
+      setLogin();
+      navigate("/");
+    } else {
+      alert("Invalid username or password");
+    }
   };
 
-  return (
+  const handleChange = (event) => {
+    if (event.target.name === "username") {
+      setUsername(event.target.value);
+    } else {
+      setPassword(event.target.value);
+    }
+  };
+
+  return isLogin ? (
+    <Navigate to="/" />
+  ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -44,10 +58,12 @@ export default function Login() {
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="username"
             label="Email Address"
-            name="email"
+            name="username"
             autoComplete="email"
+            value={username}
+            onChange={handleChange}
             autoFocus
           />
           <TextField
@@ -58,6 +74,8 @@ export default function Login() {
             label="Password"
             type="password"
             id="password"
+            value={password}
+            onChange={handleChange}
             autoComplete="current-password"
           />
           <Button

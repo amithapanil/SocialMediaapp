@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Header from "../../components/Header/Header";
+import { useAppContext } from "../../core/Context";
+import { Navigate } from "react-router";
+import { getPosts } from "../../services/posts";
+import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Posts() {
-  return (
-    <Box sx={{ display: "flex" }}>
-      <Header />
+  const { isLogin } = useAppContext();
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    getPosts().then((res) => {
+      setPosts(res)
+    });
+  }, []);
+  return isLogin ? (
       <Box
         component="main"
         sx={{
@@ -28,13 +37,24 @@ function Posts() {
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                List of post
+                {posts.map((item) => (
+                  <Typography
+                    component="h6"
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                    sx={{ flexGrow: 1 }}
+                  >
+                    <Link to={"/post/" + item.id}> {item.title}</Link>
+                  </Typography>
+                ))}
               </Paper>
             </Grid>
           </Grid>
         </Container>
       </Box>
-    </Box>
+  ) : (
+    <Navigate to="/login" />
   );
 }
 

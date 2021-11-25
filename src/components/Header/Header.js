@@ -20,7 +20,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import Logout from "@mui/icons-material/Logout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAppContext } from "../../core/Context";
 
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
@@ -69,6 +70,7 @@ const Drawer = styled(MuiDrawer, {
 
 function Header() {
   const navigate = useNavigate();
+  const {setLogout} = useAppContext();
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -81,6 +83,7 @@ function Header() {
     setAnchorEl(null);
   };
   const logout = () => {
+    setLogout();
     navigate("/login");
   };
   return (
@@ -105,7 +108,7 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <Typography
-            component="h1"
+            component="h2"
             variant="h6"
             color="inherit"
             noWrap
@@ -168,20 +171,30 @@ function Header() {
             px: [1],
           }}
         >
+          <Typography
+            component="h1"
+            variant="h4"
+            color="inherit"
+            align="center"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+            SN
+          </Typography>
           <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />
           </IconButton>
         </Toolbar>
         <Divider />
         <List>
-          <div>
+          <Link to="/">
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText primary="Posts" />
             </ListItem>
-          </div>
+          </Link>
         </List>
       </Drawer>
     </>
