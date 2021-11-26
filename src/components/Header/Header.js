@@ -185,7 +185,7 @@ function Header() {
           </Typography>
           <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />
-          </IconButton>
+        </IconButton>
         </Toolbar>
         <Divider />
         <List>
@@ -198,7 +198,19 @@ function Header() {
             </ListItem>
           </Link>
         </List>
-      </Drawer>
+
+        <List>
+          <Link to="/Photos">
+            <ListItem button>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Photos" />
+            </ListItem>
+          </Link>
+        </List>
+
+        </Drawer>
     </>
   );
 }
