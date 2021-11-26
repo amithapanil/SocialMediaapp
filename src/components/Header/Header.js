@@ -22,6 +22,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate, Link } from "react-router-dom";
 import { useAppContext } from "../../core/Context";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
@@ -72,6 +73,7 @@ function Header() {
   const navigate = useNavigate();
   const {setLogout} = useAppContext();
   const [open, setOpen] = useState(true);
+  const appTitle = useSelector((state) => state.appTitle);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -114,7 +116,7 @@ function Header() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Posts
+            {appTitle}
           </Typography>
           <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
             <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>

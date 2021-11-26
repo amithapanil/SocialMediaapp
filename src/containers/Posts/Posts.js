@@ -4,57 +4,56 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { useAppContext } from "../../core/Context";
-import { Navigate } from "react-router";
-import { getPosts } from "../../services/posts";
 import { Typography } from "@mui/material";
+import { getPosts } from "../../services/posts";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Posts() {
-  const { isLogin } = useAppContext();
   const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch({type:'SET_TITLE', data: 'Post'});
     getPosts().then((res) => {
-      setPosts(res)
+      setPosts(res);
     });
   }, []);
-  return isLogin ? (
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto",
-        }}
-      >
-        <Toolbar />
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Grid container spacing={3}>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                {posts.map((item) => (
-                  <Typography
-                    component="h6"
-                    variant="h6"
-                    color="inherit"
-                    noWrap
-                    sx={{ flexGrow: 1 }}
-                  >
-                    <Link to={"/post/" + item.id}> {item.title}</Link>
-                  </Typography>
-                ))}
-              </Paper>
-            </Grid>
+  return (
+    <Box
+      component="main"
+      sx={{
+        backgroundColor: (theme) =>
+          theme.palette.mode === "light"
+            ? theme.palette.grey[100]
+            : theme.palette.grey[900],
+        flexGrow: 1,
+        height: "100vh",
+        overflow: "auto",
+      }}
+    >
+      <Toolbar />
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <Grid container spacing={3}>
+          {/* Recent Orders */}
+          <Grid item xs={12}>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+              {posts.map((item) => (
+                <Typography
+                  component="h6"
+                  variant="h6"
+                  color="inherit"
+                  noWrap
+                  sx={{ flexGrow: 1 }}
+                  key={item.id}
+                >
+                  <Link to={"/post/" + item.id}> {item.title}</Link>
+                </Typography>
+              ))}
+            </Paper>
           </Grid>
-        </Container>
-      </Box>
-  ) : (
-    <Navigate to="/login" />
+        </Grid>
+      </Container>
+    </Box>
   );
 }
 
