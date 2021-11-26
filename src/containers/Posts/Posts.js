@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 import { getPosts } from "../../services/posts";
+import { getUsers } from "../../services/users";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -18,6 +19,7 @@ function Posts() {
       setPosts(res);
     });
   }, []);
+ 
   return (
     <Box
       component="main"
@@ -49,6 +51,7 @@ function Posts() {
                   <Link to={"/post/" + item.id}> {item.title}</Link>
                 </Typography>
               ))}
+             
             </Paper>
           </Grid>
         </Grid>

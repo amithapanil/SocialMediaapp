@@ -194,7 +194,9 @@ function Header() {
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
-              <ListItemText primary="Posts" />
+              
+            <ListItemText children="Posts" />
+              <ListItemText primary="Users" />
             </ListItem>
           </Link>
         </List>

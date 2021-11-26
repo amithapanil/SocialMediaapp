@@ -6,6 +6,8 @@ import PostDetails from "./containers/Posts/PostDetails";
 import Posts from "./containers/Posts/Posts";
 import { useAppContext } from "./core/Context";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
+import Users from "./containers/users/Users";
+import Userdetails from "./containers/users/Userdetails";
 
 const theme = createTheme();
 function App() {
@@ -18,8 +20,11 @@ function App() {
             path="/"
             element={isLogin ? <DashboardLayout /> : <Navigate to="/login" />}
           >
-            <Route index element={<Posts />} />
+            <Route  element={<Posts />} />
             <Route path="/post/:id" element={<PostDetails />} />
+        
+          <Route index element={<Users />} />
+            <Route path="/user/:id" element={<Userdetails />} />
           </Route>
           <Route path="/login" element={<Login />} />
         </Routes>
