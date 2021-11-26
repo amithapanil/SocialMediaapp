@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 import { getPosts } from "../../services/posts";
-import { getUsers } from "../../services/users";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 

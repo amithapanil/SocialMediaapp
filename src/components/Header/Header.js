@@ -194,9 +194,19 @@ function Header() {
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
+                
+            </ListItem>
+                
+            <ListItem>
+            <ListItemText >
+              <Link to="/post">Posts</Link>
+              </ListItemText >
               
-            <ListItemText children="Posts" />
-              <ListItemText primary="Users" />
+            </ListItem>
+            <ListItem>
+            <ListItemText >
+            <Link to="/Users">Users</Link>
+            </ListItemText>
             </ListItem>
           </Link>
         </List>

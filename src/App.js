@@ -14,20 +14,23 @@ function App() {
   const { isLogin } = useAppContext();
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Routes>
+      <ThemeProvider theme={theme}>          
+           <Routes>
           <Route
             path="/"
             element={isLogin ? <DashboardLayout /> : <Navigate to="/login" />}
           >
-            <Route  element={<Posts />} />
+            <Route  path="/post"  element={<Posts />} />
             <Route path="/post/:id" element={<PostDetails />} />
         
-          <Route index element={<Users />} />
+            <Route  path="/Users"  element={<Users />} />
             <Route path="/user/:id" element={<Userdetails />} />
-          </Route>
+            </Route>
           <Route path="/login" element={<Login />} />
+              
+          
         </Routes>
+        
       </ThemeProvider>
     </BrowserRouter>
   );
