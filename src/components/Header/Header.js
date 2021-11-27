@@ -71,7 +71,7 @@ const Drawer = styled(MuiDrawer, {
 
 function Header() {
   const navigate = useNavigate();
-  const {setLogout} = useAppContext();
+  const { setLogout } = useAppContext();
   const [open, setOpen] = useState(true);
   const appTitle = useSelector((state) => state.appTitle);
   const toggleDrawer = () => {
@@ -88,6 +88,7 @@ function Header() {
     setLogout();
     navigate("/login");
   };
+
   return (
     <>
       <CssBaseline />
@@ -194,7 +195,19 @@ function Header() {
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
+
               <ListItemText primary="Posts" />
+            </ListItem>
+          </Link>
+        </List>
+        <List>
+          <Link to="/todos">
+            <ListItem button>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+
+              <ListItemText primary="Todos" />
             </ListItem>
           </Link>
         </List>

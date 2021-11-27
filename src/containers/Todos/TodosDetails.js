@@ -5,17 +5,19 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
-import { getPosts } from "../../services/posts";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+import { getTodo } from "../../services/todos";
 import { useDispatch } from "react-redux";
 
-function Posts() {
-  const [posts, setPosts] = useState([]);
+function TodoDetails() {
+  const { id } = useParams();
+  const [todos, setTodo] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: "SET_TITLE", data: "Post" });
-    getPosts().then((res) => {
-      setPosts(res);
+    dispatch({ type: "SET_TITLE", data: "Todos Details" });
+    getTodo(id).then((res) => {
+      console.log(res);
+      setTodo(res);
     });
   }, []);
   return (
@@ -37,18 +39,22 @@ function Posts() {
           {/* Recent Orders */}
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              {posts.map((item) => (
-                <Typography
-                  component="h6"
-                  variant="h6"
-                  color="inherit"
-                  noWrap
-                  sx={{ flexGrow: 1 }}
-                  key={item.id}
-                >
-                  <Link to={"/post/" + item.id}> {item.title}</Link>
-                </Typography>
-              ))}
+              {todos ? (
+                <>
+                  <Typography
+                    component="h6"
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                    sx={{ flexGrow: 1 }}
+                  >
+                    {todos.id}
+                  </Typography>
+                  <p>{todos.title}</p>
+                </>
+              ) : (
+                ""
+              )}
             </Paper>
           </Grid>
         </Grid>
@@ -57,4 +63,4 @@ function Posts() {
   );
 }
 
-export default Posts;
+export default TodoDetails;

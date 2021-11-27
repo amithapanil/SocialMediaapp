@@ -5,17 +5,17 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
-import { getPosts } from "../../services/posts";
+import { getTodos } from "../../services/todos";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-function Posts() {
-  const [posts, setPosts] = useState([]);
+function Todos() {
+  const [posts, setTodos] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: "SET_TITLE", data: "Post" });
-    getPosts().then((res) => {
-      setPosts(res);
+    dispatch({ type: "SET_TITLE", data: "Todos" });
+    getTodos().then((res) => {
+      setTodos(res);
     });
   }, []);
   return (
@@ -46,7 +46,7 @@ function Posts() {
                   sx={{ flexGrow: 1 }}
                   key={item.id}
                 >
-                  <Link to={"/post/" + item.id}> {item.title}</Link>
+                  <Link to={"/todos/" + item.id}> {item.title}</Link>
                 </Typography>
               ))}
             </Paper>
@@ -57,4 +57,4 @@ function Posts() {
   );
 }
 
-export default Posts;
+export default Todos;

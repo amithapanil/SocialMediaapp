@@ -1,9 +1,11 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./containers/Login/Login";
 import PostDetails from "./containers/Posts/PostDetails";
+import TodosDetails from "./containers/Todos/TodosDetails";
 import Posts from "./containers/Posts/Posts";
+import Todos from "./containers/Todos/Todos";
 import { useAppContext } from "./core/Context";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 
@@ -13,16 +15,23 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Routes>
-          <Route
-            path="/"
-            element={isLogin ? <DashboardLayout /> : <Navigate to="/login" />}
-          >
-            <Route index element={<Posts />} />
-            <Route path="/post/:id" element={<PostDetails />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <Suspense fallback={<h2>Loading...</h2>}>
+          <Routes>
+            <Route
+              path="/"
+              element={isLogin ? <DashboardLayout /> : <Navigate to="/login" />}
+            >
+              <Route path="/todos" index element={<Todos />} />
+
+              <Route index element={<Posts />} />
+              <Route path="/post/:id" element={<PostDetails />} />
+              <Route path="/todos/:id" element={<TodosDetails />} />
+              <Route />
+            </Route>
+            
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Suspense>
       </ThemeProvider>
     </BrowserRouter>
   );
