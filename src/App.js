@@ -20,10 +20,10 @@ function App() {
             path="/"
             element={isLogin ? <DashboardLayout /> : <Navigate to="/login" />}
           >
-            <Route  path="/post"  element={<Posts />} />
+            <Route  path="/post" primary element={<Posts />} />
             <Route path="/post/:id" element={<PostDetails />} />
         
-            <Route  path="/Users"  element={<Users />} />
+            <Route  path="/Users" primary element={<Users />} />
             <Route path="/user/:id" element={<Userdetails />} />
             </Route>
           <Route path="/login" element={<Login />} />

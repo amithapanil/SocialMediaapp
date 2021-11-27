@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import { useParams } from "react-router";
 import { getUser } from "../../services/users";
 import { useDispatch } from "react-redux";
-
+import "./Tabl.css";
 
 function Userdetails() {
   const { id } = useParams();
