@@ -18,6 +18,7 @@ import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate, Link } from "react-router-dom";
@@ -199,15 +200,13 @@ function Header() {
               <ListItemText primary="Posts" />
             </ListItem>
           </Link>
-        </List>
-        <List>
           <Link to="/todos">
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
 
-              <ListItemText primary="Todos" />
+              <ListItemText children="Todos" />
             </ListItem>
           </Link>
         </List>

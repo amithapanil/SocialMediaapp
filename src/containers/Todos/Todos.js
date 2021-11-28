@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 function Todos() {
-  const [posts, setTodos] = useState([]);
+  const [todos, setTodos] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: "SET_TITLE", data: "Todos" });
@@ -32,12 +32,13 @@ function Todos() {
       }}
     >
       <Toolbar />
+
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
           {/* Recent Orders */}
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              {posts.map((item) => (
+              {todos.map((item) => (
                 <Typography
                   component="h6"
                   variant="h6"

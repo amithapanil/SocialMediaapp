@@ -14,7 +14,7 @@ function PostDetails() {
   const [post, setPost] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({type:'SET_TITLE', data: 'Post Details'});
+    dispatch({ type: "SET_TITLE", data: "Post Details" });
     getPost(id).then((res) => {
       setPost(res);
     });
@@ -51,7 +51,9 @@ function PostDetails() {
                   </Typography>
                   <p>{post.body}</p>
                 </>
-              ) : ''}
+              ) : (
+                ""
+              )}
             </Paper>
           </Grid>
         </Grid>

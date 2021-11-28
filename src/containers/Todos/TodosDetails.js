@@ -11,15 +11,15 @@ import { useDispatch } from "react-redux";
 
 function TodoDetails() {
   const { id } = useParams();
-  const [todos, setTodo] = useState(null);
+  const [todos, setTodo] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: "SET_TITLE", data: "Todos Details" });
     getTodo(id).then((res) => {
-      console.log(res);
       setTodo(res);
     });
   }, []);
+
   return (
     <Box
       component="main"
@@ -50,7 +50,13 @@ function TodoDetails() {
                   >
                     {todos.id}
                   </Typography>
-                  <p>{todos.title}</p>
+                  <p
+                    style={{
+                      textDecoration: todos.completed ? "line-through" : "",
+                    }}
+                  >
+                    {todos.title}
+                  </p>
                 </>
               ) : (
                 ""
