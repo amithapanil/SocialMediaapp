@@ -22,6 +22,7 @@ import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import GroupIcon from "@mui/icons-material/Group";
 import ListIcon from "@mui/icons-material/List";
 import CollectionsIcon from "@mui/icons-material/Collections";
+import MessageIcon from "@mui/icons-material/Message";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate, Link } from "react-router-dom";
 import { useAppContext } from "../../core/Context";
@@ -232,6 +233,14 @@ function Header() {
                 <CollectionsIcon />
               </ListItemIcon>
               <ListItemText primary="Albums" />
+            </ListItem>
+          </Link>
+          <Link to="/comment">
+            <ListItem button>
+              <ListItemIcon>
+                <MessageIcon />
+              </ListItemIcon>
+              <ListItemText primary="Comments" />
             </ListItem>
           </Link>
         </List>
