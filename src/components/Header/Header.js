@@ -71,9 +71,9 @@ const Drawer = styled(MuiDrawer, {
 
 function Header() {
   const navigate = useNavigate();
-  const {setLogout} = useAppContext();
+  const { setLogout } = useAppContext();
   const [open, setOpen] = useState(true);
-  const appTitle = useSelector((state) => state.appTitle);
+  const appTitle = useSelector((state) => state.general.appTitle);
   const toggleDrawer = () => {
     setOpen(!open);
   };

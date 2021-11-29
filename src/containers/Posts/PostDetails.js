@@ -8,13 +8,14 @@ import { Typography } from "@mui/material";
 import { useParams } from "react-router";
 import { getPost } from "../../services/posts";
 import { useDispatch } from "react-redux";
+import { setTitle } from "../../actions/generalAction";
 
 function PostDetails() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({type:'SET_TITLE', data: 'Post Details'});
+    dispatch(setTitle("Post Details"));
     getPost(id).then((res) => {
       setPost(res);
     });
@@ -51,7 +52,9 @@ function PostDetails() {
                   </Typography>
                   <p>{post.body}</p>
                 </>
-              ) : ''}
+              ) : (
+                ""
+              )}
             </Paper>
           </Grid>
         </Grid>

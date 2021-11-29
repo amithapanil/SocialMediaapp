@@ -8,12 +8,13 @@ import { Typography } from "@mui/material";
 import { getPosts } from "../../services/posts";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { setTitle } from "../../actions/generalAction";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({type:'SET_TITLE', data: 'Post'});
+    dispatch(setTitle("Post"));
     getPosts().then((res) => {
       setPosts(res);
     });
