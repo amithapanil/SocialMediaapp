@@ -13,6 +13,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import MessageIcon from '@mui/icons-material/Message';
 import MuiDrawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
@@ -195,6 +196,16 @@ function Header() {
                 <DashboardIcon />
               </ListItemIcon>
               <ListItemText primary="Posts" />
+            </ListItem>
+          </Link>
+        </List>
+        <List>
+          <Link to="/comment">
+            <ListItem button>
+              <ListItemIcon>
+              <MessageIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Comments" />
             </ListItem>
           </Link>
         </List>
