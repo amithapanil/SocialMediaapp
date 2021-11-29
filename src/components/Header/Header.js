@@ -226,6 +226,14 @@ function Header() {
               <ListItemText primary="Photos" />
             </ListItem>
           </Link>
+          <Link to="/album">
+            <ListItem button>
+              <ListItemIcon>
+                <CollectionsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Albums" />
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
     </>
