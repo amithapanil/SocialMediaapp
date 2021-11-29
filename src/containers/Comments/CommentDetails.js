@@ -41,8 +41,8 @@ function CommentDetails() {
               {comment ? (
                 <>
                   <Typography
-                    component="h6"
-                    variant="h6"
+                    component="h5"
+                    variant="h5"
                     color="inherit"
                     noWrap
                     sx={{ flexGrow: 1 }}
@@ -50,8 +50,8 @@ function CommentDetails() {
                     {comment.name}
                   </Typography>
                   <Typography
-                    component="h7"
-                    variant="h7"
+                    component="h6"
+                    variant="h6"
                     color="green"
                     noWrap
                     sx={{ flexGrow: 1 }}

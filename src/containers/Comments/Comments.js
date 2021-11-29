@@ -16,7 +16,6 @@ function Comments() {
     dispatch({ type: "SET_TITLE", data: "Comment" });
     getComments().then((res) => {
       setComments(res);
-      console.log(res);
     });
   }, []);
   return (
