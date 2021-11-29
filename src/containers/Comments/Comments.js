@@ -7,20 +7,20 @@ import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 import { getComments } from "../../services/comments";
 import { Link } from "react-router-dom";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function Comments() {
-    const [comments, setComments] = useState([]);
-    // const dispatch = useDispatch();
-    useEffect(() => {
-    //   dispatch({type:'SET_TITLE', data: 'Post'});
-      getComments().then((res) => {
-        setComments(res);
-        console.log(res);
-      });
-    }, []);
-    return (
-        <Box
+  const [comments, setComments] = useState([]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: "SET_TITLE", data: "Comment" });
+    getComments().then((res) => {
+      setComments(res);
+      console.log(res);
+    });
+  }, []);
+  return (
+    <Box
       component="main"
       sx={{
         backgroundColor: (theme) =>
@@ -55,7 +55,7 @@ function Comments() {
         </Grid>
       </Container>
     </Box>
-    );
+  );
 }
 
-export default Comments
+export default Comments;
