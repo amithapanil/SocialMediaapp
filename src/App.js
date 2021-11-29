@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./containers/Login/Login";
 import PostDetails from "./containers/Posts/PostDetails";
 import Posts from "./containers/Posts/Posts";
+
+
+import AlbumDetails from "./containers/Albums/AlbumDetails";
+import Albums from "./containers/Albums/Albums";
 import { useAppContext } from "./core/Context";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 
@@ -20,7 +24,15 @@ function App() {
           >
             <Route index element={<Posts />} />
             <Route path="/post/:id" element={<PostDetails />} />
+
+
+            <Route path="/album" element={<Albums />} />
+
+            <Route path="/album/:id" element={<AlbumDetails />} />
           </Route>
+
+
+          
           <Route path="/login" element={<Login />} />
         </Routes>
       </ThemeProvider>
