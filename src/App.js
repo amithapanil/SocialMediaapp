@@ -1,13 +1,18 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./containers/Login/Login";
-import PostDetails from "./containers/Posts/PostDetails";
-import Posts from "./containers/Posts/Posts";
 import { useAppContext } from "./core/Context";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
-import Users from "./containers/users/Users";
-import Userdetails from "./containers/users/Userdetails";
+
+const Posts = React.lazy(() => import("./containers/Posts/Posts"));
+const PostDetails = React.lazy(() => import("./containers/Posts/PostDetails"));
+const Users = React.lazy(() => import("./containers/users/Users"));
+const Userdetails = React.lazy(() => import("./containers/users/Userdetails"));
+const Todos = React.lazy(() => import("./containers/Todos/Todos"));
+const TodosDetails = React.lazy(() =>
+  import("./containers/Todos/TodosDetails")
+);
 
 const theme = createTheme();
 function App() {
@@ -15,18 +20,24 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Routes>
-          <Route
-            path="/"
-            element={isLogin ? <DashboardLayout /> : <Navigate to="/login" />}
-          >
-            <Route index element={<Posts />} />
-            <Route path="/post/:id" element={<PostDetails />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/user/:id" element={<Userdetails />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <Suspense fallback={<h2>Loading...</h2>}>
+          <Routes>
+            <Route
+              path="/"
+              element={isLogin ? <DashboardLayout /> : <Navigate to="/login" />}
+            >
+              <Route index element={<Posts />} />
+              <Route path="/post/:id" element={<PostDetails />} />
+              <Route path="/todos" element={<Todos />} />
+              <Route path="/todos/:id" element={<TodosDetails />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/user/:id" element={<Userdetails />} />
+              <Route />
+            </Route>
+
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Suspense>
       </ThemeProvider>
     </BrowserRouter>
   );

@@ -18,8 +18,9 @@ import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import WysiwygIcon from '@mui/icons-material/Wysiwyg';
-import GroupIcon from '@mui/icons-material/Group';
+import WysiwygIcon from "@mui/icons-material/Wysiwyg";
+import GroupIcon from "@mui/icons-material/Group";
+import ListIcon from "@mui/icons-material/List";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate, Link } from "react-router-dom";
 import { useAppContext } from "../../core/Context";
@@ -89,6 +90,7 @@ function Header() {
     setLogout();
     navigate("/login");
   };
+
   return (
     <>
       <CssBaseline />
@@ -195,6 +197,7 @@ function Header() {
               <ListItemIcon>
                 <WysiwygIcon />
               </ListItemIcon>
+
               <ListItemText primary="Posts" />
             </ListItem>
           </Link>
@@ -204,6 +207,14 @@ function Header() {
                 <GroupIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
+            </ListItem>
+          </Link>
+          <Link to="/todos">
+            <ListItem button>
+              <ListItemIcon>
+                <ListIcon />
+              </ListItemIcon>
+              <ListItemText primary="Todos" />
             </ListItem>
           </Link>
         </List>
