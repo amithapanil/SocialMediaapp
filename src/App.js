@@ -13,6 +13,7 @@ const Todos = React.lazy(() => import("./containers/Todos/Todos"));
 const TodosDetails = React.lazy(() =>
   import("./containers/Todos/TodosDetails")
 );
+const Photos = React.lazy(() => import("./containers/Photos/Photos"));
 
 const theme = createTheme();
 function App() {
@@ -32,6 +33,7 @@ function App() {
               <Route path="/todos/:id" element={<TodosDetails />} />
               <Route path="/users" element={<Users />} />
               <Route path="/user/:id" element={<Userdetails />} />
+              <Route path="/photos" element={<Photos />} />
               <Route />
             </Route>
 

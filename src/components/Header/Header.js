@@ -21,6 +21,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import GroupIcon from "@mui/icons-material/Group";
 import ListIcon from "@mui/icons-material/List";
+import CollectionsIcon from "@mui/icons-material/Collections";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate, Link } from "react-router-dom";
 import { useAppContext } from "../../core/Context";
@@ -215,6 +216,14 @@ function Header() {
                 <ListIcon />
               </ListItemIcon>
               <ListItemText primary="Todos" />
+            </ListItem>
+          </Link>
+          <Link to="/photos">
+            <ListItem button>
+              <ListItemIcon>
+                <CollectionsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Photos" />
             </ListItem>
           </Link>
         </List>
