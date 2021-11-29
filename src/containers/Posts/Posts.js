@@ -4,14 +4,16 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { Typography } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 import { getPosts } from "../../services/posts";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../actions/generalAction";
 
+const variants = ["h3", "h5", "h5", "h5", "h5", "h5"];
+
 function Posts() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setTitle("Post"));
@@ -19,7 +21,7 @@ function Posts() {
       setPosts(res);
     });
   }, []);
- 
+
   return (
     <Box
       component="main"
@@ -38,20 +40,41 @@ function Posts() {
         <Grid container spacing={3}>
           {/* Recent Orders */}
           <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              {posts.map((item) => (
-                <Typography
-                  component="h6"
-                  variant="h6"
-                  color="inherit"
-                  noWrap
-                  sx={{ flexGrow: 1 }}
-                  key={item.id}
-                >
-                  <Link to={"/post/" + item.id}> {item.title}</Link>
-                </Typography>
-              ))}
-             
+            <Paper sx={{ p: 5, display: "flex", flexDirection: "column" }}>
+              {posts ? (
+                <>
+                  <Typography
+                    component="h2"
+                    variant="h4"
+                    color="inherit"
+                    noWrap
+                    sx={{ flexGrow: 1 }}
+                    marginBottom={2}
+                  >
+                    Post
+                  </Typography>
+                  {posts.map((item) => (
+                    <Typography
+                      component="h6"
+                      variant="h6"
+                      color="inherit"
+                      noWrap
+                      sx={{ flexGrow: 1 }}
+                      key={item.id}
+                    >
+                      <Link to={"/post/" + item.id}> {item.title}</Link>
+                    </Typography>
+                  ))}
+                </>
+              ) : (
+                <div>
+                  {variants.map((variant, index) => (
+                    <Typography component="div" key={index} variant={variant}>
+                      <Skeleton />
+                    </Typography>
+                  ))}
+                </div>
+              )}
             </Paper>
           </Grid>
         </Grid>
