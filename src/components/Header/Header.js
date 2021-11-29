@@ -18,7 +18,8 @@ import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+import WysiwygIcon from '@mui/icons-material/Wysiwyg';
+import GroupIcon from '@mui/icons-material/Group';
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate, Link } from "react-router-dom";
 import { useAppContext } from "../../core/Context";
@@ -71,7 +72,7 @@ const Drawer = styled(MuiDrawer, {
 
 function Header() {
   const navigate = useNavigate();
-  const {setLogout} = useAppContext();
+  const { setLogout } = useAppContext();
   const [open, setOpen] = useState(true);
   const appTitle = useSelector((state) => state.appTitle);
   const toggleDrawer = () => {
@@ -192,9 +193,17 @@ function Header() {
           <Link to="/">
             <ListItem button>
               <ListItemIcon>
-                <DashboardIcon />
+                <WysiwygIcon />
               </ListItemIcon>
               <ListItemText primary="Posts" />
+            </ListItem>
+          </Link>
+          <Link to="/users">
+            <ListItem button>
+              <ListItemIcon>
+                <GroupIcon />
+              </ListItemIcon>
+              <ListItemText primary="Users" />
             </ListItem>
           </Link>
         </List>
