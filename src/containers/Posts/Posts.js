@@ -19,6 +19,7 @@ function Posts() {
       setPosts(res);
     });
   }, []);
+ 
   return (
     <Box
       component="main"
@@ -50,6 +51,7 @@ function Posts() {
                   <Link to={"/post/" + item.id}> {item.title}</Link>
                 </Typography>
               ))}
+             
             </Paper>
           </Grid>
         </Grid>
